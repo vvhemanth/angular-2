@@ -1,0 +1,31 @@
+<!-- 
+child b data
+<p>
+  second works!
+</p>
+{{data}} 20 is transfered from parent to child 
+
+<button (click)="clickme(data)">submit</button>
+
+<input type="{{type}}">
+
+
+
+{{type}} -->
+
+{{data}} 20 is transfered from parent to child 
+
+<button (click)="clickme(data)">submit</button>
+<button (click)="sample()">send data from child to parent</button>
+{{sampleData}}
+
+<input something value="45" type="{{type}}">
+<p something> this is my text</p>
+//child screen
+<ng-container *ngFor="let item of sampleArray">
+  {{item}}
+</ng-container>
+
+<input something value="56" type="{{type}}">
+
+<ng-content></ng-content>

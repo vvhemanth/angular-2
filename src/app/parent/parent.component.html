@@ -1,0 +1,24 @@
+types of communication from component to component
+1. parent to child  --> input 
+2. child to parent  --> output
+
+services
+parent to child  => child to parent
+
+<button (click)="showme()"></button>
+<ng-container *ngIf="showdata">
+child to parent communication via output //string/object//array
+<app-child [data]="20" [type]="'date'" (something)="changeEvent($event)"></app-child>
+// second data
+<app-child [data]="30" [type]="'time'" (something)="changeEvent($event)"></app-child>
+</ng-container>
+...........................................................
+<button (click)="someData()">send data from parent to child</button>
+............
+
+<p [ngStyle]="{'background':Iscolor ? 'blue' :'red'}"> This is my website</p>
+
+<p [ngClass]="val >10 ? 'red' : 'blue'"> This is responsive design</p>
+
+<input [(ngModel)]="sampleData" type="text">
+{{sampleData}}

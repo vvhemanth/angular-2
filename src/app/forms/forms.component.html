@@ -1,0 +1,122 @@
+<p>
+  forms works!
+</p>
+
+template driven forms
+
+<form #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)" >
+  <input type = "text" name = "emailid" placeholder = "emailid" ngModel>
+  <br/>
+  <input type = "password" name = "passwd" placeholder = "passwd" ngModel>
+  <br/>
+  <input type = "submit" value = "submit">
+</form>
+
+
+
+
+<div>
+  <form [formGroup]="formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+     <input type="text" class="fortextbox" name="emailid" placeholder="emailid" 
+        formControlName="emailid">
+     <br/>
+     
+     <input type="password" class="fortextbox" name="passwd" 
+        placeholder="passwd" formControlName="passwd">
+     <br/>
+     
+     <input type="submit" class="forsubmit" value="Log In">
+  </form>
+</div>
+<p>
+  Email entered is : {{emailid}}
+</p>
+
+................
+
+<h1>Template-driven Form Example (with one-way data binding):</h1>
+    <form #myForm="ngForm" (ngSubmit)="onSubmitTemplateBased(myForm.value)">
+        <p>
+            <label>First Name:</label>
+            <input type="text"  
+                [ngModel]="user.firstName" name = "first" required>
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password"  
+                [ngModel]="user.password" name="password" required>
+        </p>
+        <p>
+            <button type="submit" [disabled]="!myForm.valid">Submit</button>
+        </p>
+    </form>
+
+    ...........
+    <h1>Template-driven Form Example (without any type of binding):</h1>
+    <form #myForm1="ngForm" (ngSubmit)="onSubmitTemplateBased(myForm1.value)">
+        <p>
+            <label>First Name:</label>
+            <input type="text" ngModel required name = "first">
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" ngModel required name="password">
+        </p>
+        <p>
+            <button type="submit" [disabled]="!myForm1.valid">Submit</button>
+        </p>
+    </form>
+
+
+    ...................
+    <h1>Reactive Form Example:</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p>
+            <label>First Name:</label>
+            <input type="text" formControlName="firstName">
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" formControlName="password">
+        </p>
+        <p>
+            <button type="submit" [disabled]="!form.valid">Submit</button>
+        </p>
+    </form>
+
+    .....
+    validation-template
+
+    
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+ 
+  <p>
+    <label for="firstname1">First Name </label>
+    <input type="text" id="firstname1" name="firstname1" required minlength="10" #firstname1="ngModel"
+      [(ngModel)]="contact.firstname1">
+  </p>
+  <div *ngIf="!firstname1?.valid && (firstname1?.dirty || firstname1?.touched)" class="error">
+    <div *ngIf="firstname1.errors.required">
+      First Name is required
+    </div>
+    <div *ngIf="firstname1.errors.minlength">
+      First Name Minimum Length is {{firstname1.errors.minlength?.requiredLength}}
+    </div>
+  </div>
+ 
+  <p>
+    <label for="lastname">Last Name </label>
+    <input type="text" id="lastname" name="lastname" required maxlength="15" #lastname="ngModel" 
+            pattern="^[a-zA-Z]+$"  [(ngModel)]="contact.lastname">
+  </p>
+  <div *ngIf="!lastname?.valid && (lastname?.dirty || lastname?.touched)" class="error">
+    <div *ngIf="lastname.errors.required">
+      Last Name is required
+    </div>
+    <div *ngIf="lastname.errors.maxlength">
+      Last Name Minimum Length is {{lastname.errors.maxlength?.requiredLength}}
+    </div>
+    <div *ngIf="lastname.errors.pattern">
+      Only characters are allowed
+    </div>
+  </div>
